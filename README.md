@@ -124,7 +124,6 @@ Add the application IDs to the extensions file *Phone_Email_Base.xml*.
     1. *SignUpOrSignInWithPhone.xml*
     1. *ProfileEditPhoneOnly.xml*
     1. *ChangePhoneNumber.xml*
-    1. *PasswordResetEmail.xml*
 
 As you upload the files, Azure adds the prefix `B2C_1A_` to each.
 
