@@ -893,9 +893,9 @@
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />
             <OutputClaim ClaimTypeReferenceId="signInNames.phoneNumber" />
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surname" />
+            <OutputClaim ClaimTypeReferenceId="surname" /> -->
             <OutputClaim ClaimTypeReferenceId="strongAuthenticationEmailAddress" />
             <OutputClaim ClaimTypeReferenceId="hasFullProfile" DefaultValue="true" AlwaysUseDefaultValue="true" />
           </OutputClaims>
@@ -933,9 +933,9 @@
         <!-- Technical profile for reading user profile using phone number-->
         <TechnicalProfile Id="AAD-UserDiscoveryUsingLogonPhoneNumber-FullProfile">
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surname" />
+            <OutputClaim ClaimTypeReferenceId="surname" /> -->
             <OutputClaim ClaimTypeReferenceId="hasFullProfile" DefaultValue="true" AlwaysUseDefaultValue="true" />
           </OutputClaims>
           <IncludeTechnicalProfile ReferenceId="AAD-UserDiscoveryUsingLogonPhoneNumber-Common" />
@@ -954,9 +954,9 @@
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="userPrincipalName" />
             <PersistedClaim ClaimTypeReferenceId="signInNames.phoneNumber" />
-            <PersistedClaim ClaimTypeReferenceId="displayName" DefaultValue="unknown" />
+            <!-- <PersistedClaim ClaimTypeReferenceId="displayName" DefaultValue="unknown" />
             <PersistedClaim ClaimTypeReferenceId="givenName" />
-            <PersistedClaim ClaimTypeReferenceId="surname" />
+            <PersistedClaim ClaimTypeReferenceId="surname" /> -->
           </PersistedClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
@@ -999,9 +999,9 @@
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" />
             <PersistedClaim ClaimTypeReferenceId="newPassword" PartnerClaimType="password" />
-            <PersistedClaim ClaimTypeReferenceId="displayName" DefaultValue="unknown" />
+            <!-- <PersistedClaim ClaimTypeReferenceId="displayName" DefaultValue="unknown" />
             <PersistedClaim ClaimTypeReferenceId="givenName" />
-            <PersistedClaim ClaimTypeReferenceId="surname" />
+            <PersistedClaim ClaimTypeReferenceId="surname" /> -->
             <PersistedClaim ClaimTypeReferenceId="passwordPolicies" DefaultValue="DisablePasswordExpiration,DisableStrongPassword" />
           </PersistedClaims>
           <OutputClaims>
@@ -1026,9 +1026,9 @@
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surname" />
+            <OutputClaim ClaimTypeReferenceId="surname" /> -->
             <OutputClaim ClaimTypeReferenceId="hasFullProfile" DefaultValue="true" AlwaysUseDefaultValue="true" />
             <OutputClaim ClaimTypeReferenceId="strongAuthenticationEmailAddress" />
             <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />
@@ -1047,9 +1047,9 @@
           </InputClaims>
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="objectId" />
-            <PersistedClaim ClaimTypeReferenceId="givenName" />
+            <!-- <PersistedClaim ClaimTypeReferenceId="givenName" />
             <PersistedClaim ClaimTypeReferenceId="displayName" />
-            <PersistedClaim ClaimTypeReferenceId="surname" />
+            <PersistedClaim ClaimTypeReferenceId="surname" /> -->
           </PersistedClaims>
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
@@ -1132,9 +1132,9 @@
           </DisplayClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surName" />
+            <OutputClaim ClaimTypeReferenceId="surName" /> -->
             <OutputClaim ClaimTypeReferenceId="signInNames.phoneNumber" />
           </OutputClaims>
           <ValidationTechnicalProfiles>
@@ -1159,16 +1159,16 @@
           </InputClaimsTransformations>
           <DisplayClaims>
             <DisplayClaim DisplayControlReferenceId="phoneControl" />
-            <DisplayClaim ClaimTypeReferenceId="displayName" />
+            <!-- <DisplayClaim ClaimTypeReferenceId="displayName" />
             <DisplayClaim ClaimTypeReferenceId="givenName" />
-            <DisplayClaim ClaimTypeReferenceId="surName" />
+            <DisplayClaim ClaimTypeReferenceId="surName" /> -->
           </DisplayClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surName" />
+            <OutputClaim ClaimTypeReferenceId="surName" /> -->
             <OutputClaim ClaimTypeReferenceId="signInNames.phoneNumber" />
           </OutputClaims>
           <ValidationTechnicalProfiles>
@@ -1236,9 +1236,9 @@
             <OutputClaim ClaimTypeReferenceId="newPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="reenterPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surName" />
+            <OutputClaim ClaimTypeReferenceId="surName" /> -->
             <OutputClaim ClaimTypeReferenceId="hasFullProfile" />
             <OutputClaim ClaimTypeReferenceId="isEmailSignUp" DefaultValue="true" />
             <OutputClaim ClaimTypeReferenceId="strongAuthenticationEmailAddress" />
@@ -1367,9 +1367,9 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="signInNames.phoneNumber" Required="true" />
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surname" />
+            <OutputClaim ClaimTypeReferenceId="surname" /> -->
             <OutputClaim ClaimTypeReferenceId="strongAuthenticationEmailAddress" />
             <OutputClaim ClaimTypeReferenceId="hasFullProfile" />
           </OutputClaims>
@@ -1417,9 +1417,9 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
             <OutputClaim ClaimTypeReferenceId="objectId" />
-            <OutputClaim ClaimTypeReferenceId="displayName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
-            <OutputClaim ClaimTypeReferenceId="surname" />
+            <OutputClaim ClaimTypeReferenceId="surname" /> -->
             <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />
           </OutputClaims>
           <ValidationTechnicalProfiles>
@@ -1510,9 +1510,9 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="oid" />
             <OutputClaim ClaimTypeReferenceId="tenantId" PartnerClaimType="tid" />
-            <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
+            <!-- <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
             <OutputClaim ClaimTypeReferenceId="surName" PartnerClaimType="family_name" />
-            <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
+            <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" /> -->
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" PartnerClaimType="upn" />
           </OutputClaims>
         </TechnicalProfile>
@@ -1524,7 +1524,7 @@
             <Item Key="AllowGenerationOfClaimsWithNullValues">true</Item>
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
-          <InputClaims>
+          <!-- <InputClaims>
             <InputClaim ClaimTypeReferenceId="displayName" />
             <InputClaim ClaimTypeReferenceId="givenName" />
             <InputClaim ClaimTypeReferenceId="surname" />
@@ -1533,7 +1533,7 @@
             <OutputClaim ClaimTypeReferenceId="displayName" />
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
-          </OutputClaims>
+          </OutputClaims> -->
           <ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="AAD-UserWriteProfileUsingObjectId" />
           </ValidationTechnicalProfiles>
