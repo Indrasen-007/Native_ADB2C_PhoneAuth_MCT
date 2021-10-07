@@ -110,8 +110,8 @@ Now, grant permissions to the API scope you exposed earlier in the *IdentityExpe
 Add the application IDs to the extensions file *Phone_Email_Base.xml*.
 
 1. Open **`Phone_Email_Base.xml`** and find the element `<TechnicalProfile Id="login-NonInteractive">`.
-1. Replace both instances of `IdentityExperienceFrameworkAppId` with the application ID of the IdentityExperienceFramework application that you created earlier.
 1. Replace both instances of `ProxyIdentityExperienceFrameworkAppId` with the application ID of the ProxyIdentityExperienceFramework application that you created earlier.
+1. Replace both instances of `IdentityExperienceFrameworkAppId` with the application ID of the IdentityExperienceFramework application that you created earlier.
 1. In **`Phone_Email_Base.xml`**, replace `{insert your privacy statement URL}` and `{insert your terms and conditions URL}` with the appropriate URLs. Alternatively, delete the lines containing this text if you do not want these links shown on your phone signup/signin pages.
 1. Save the file.
 
