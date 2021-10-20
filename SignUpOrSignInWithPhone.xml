@@ -9,10 +9,8 @@
       <DisplayName>PolicyProfile</DisplayName>
       <Protocol Name="OpenIdConnect" />
       <OutputClaims>
-        <OutputClaim ClaimTypeReferenceId="displayName" />
-        <OutputClaim ClaimTypeReferenceId="givenName" />
-        <OutputClaim ClaimTypeReferenceId="surname" />
-        <OutputClaim ClaimTypeReferenceId="signInNames.phoneNumber" PartnerClaimType = "username"/>
+        <OutputClaim ClaimTypeReferenceId="displayName"  PartnerClaimType = "username" />
+        <OutputClaim ClaimTypeReferenceId="signInNames.phoneNumber"/>
         <OutputClaim ClaimTypeReferenceId="strongAuthenticationEmailAddress" />
         <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub" />
         <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
