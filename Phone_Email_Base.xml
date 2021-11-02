@@ -50,15 +50,18 @@
         <PredicateValidationReference Id="nationalNumber" />
       </ClaimType>
       <ClaimType Id="nationalNumberString">
-        <DisplayName>nationalNumberString</DisplayName>
+        <DisplayName>Phone Number</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>National Phone Number String</UserHelpText>
+        <UserHelpText>Enter National Phone Number</UserHelpText>
+        <UserInputType>TextBox</UserInputType>
         <PredicateValidationReference Id="nationalNumber" />
       </ClaimType>
       <ClaimType Id="countryCodeString">
-        <DisplayName>countryCodeString Code</DisplayName>
+        <DisplayName>Country Code</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Country Code string</UserHelpText>
+        <UserHelpText>Enter National Phone Number</UserHelpText>
+        <UserInputType>TextBox</UserInputType>
+        <PredicateValidationReference Id="nationalNumber" />
       </ClaimType>
       <ClaimType Id="email">
         <DisplayName>Email Address</DisplayName>
@@ -563,6 +566,20 @@
           <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="phoneSignIn.en" />
         </LocalizedResourcesReferences>
       </ContentDefinition>
+
+      <ContentDefinition Id="phoneSignUp">
+        <LoadUri>~/tenant/templates/AzureBlue/selfAsserted.cshtml</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.1</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Verify phone to sign up</Item>
+        </Metadata>
+        <LocalizedResourcesReferences MergeBehavior="Prepend">
+          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="phoneSignUp.en" />
+          <LocalizedResourcesReference Language="hi" LocalizedResourcesReferenceId="phoneSignUp.hi" />
+        </LocalizedResourcesReferences>
+      </ContentDefinition>
+
     </ContentDefinitions>
     <Localization Enabled="true">
       <LocalizedResources Id="phoneSignIn.en">
@@ -578,7 +595,65 @@
           <LocalizedString ElementType="UxElement" StringId="disclaimer_link_2_url">https://www.microsoft.com/en-us/servicesagreement/</LocalizedString>
         </LocalizedStrings>
       </LocalizedResources>
+
+      <LocalizedResources Id="phoneSignUp.en">
+      <LocalizedStrings>
+        <LocalizedString ElementType="UxElement" StringId="initial_intro">Please verify your country code and phone number</LocalizedString>
+        <!-- The following elements will display a message and two links at the bottom of the signup page. 
+        For policies that you intend to show to users in the United States, we suggest displaying the following text. Replace the content of the disclaimer_link_X_url elements with links to your organization's privacy statement and terms and conditions. 
+        Remove any of these lines if you do not wish to display them.  -->
+        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_msg_intro">By providing your phone number, you consent to receiving a one-time passcode sent by text message to help you sign into {insert your application name}. Standard messsage and data rates may apply.</LocalizedString>
+        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_text">Privacy Statement</LocalizedString>
+        <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_url">{insert your privacy statement URL}</LocalizedString> -->
+        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_text">Terms and Conditions</LocalizedString>
+        <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_url">{insert your terms and conditions URL}</LocalizedString> -->
+      </LocalizedStrings>
+    </LocalizedResources>
+
+    <LocalizedResources Id="phoneSignUp.hi">
+      <LocalizedStrings>
+        <LocalizedString ElementType="UxElement" StringId="initial_intro">कृपया अपने देश कोड और फ़ोन नंबर को सत्यापित करें</LocalizedString>
+        <!-- The following elements will display a message and two links at the bottom of the signup page. 
+        For policies that you intend to show to users in the United States, we suggest displaying the following text. Replace the content of the disclaimer_link_X_url elements with links to your organization's privacy statement and terms and conditions. 
+        Remove any of these lines if you do not wish to display them.  -->
+        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_msg_intro">अपना फ़ोन नंबर प्रदान करके, आप टेक्स्ट संदेश द्वारा भेजे गए एक बार पासकोड प्राप्त करने के लिए सहमति देते हैं ताकि आप अपने आवेदन नाम को शामिल कर सकें }। मानक गड़बड़ी और डेटा दरें लागू हो सकती हैं।</LocalizedString>
+        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_text">गोपनीयता विवरण</LocalizedString>
+        <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_url">{insert your privacy statement URL}</LocalizedString> -->
+        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_text">नियम और शर्तें</LocalizedString>
+        <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_url">{insert your terms and conditions URL}</LocalizedString> -->
+      </LocalizedStrings>
+    </LocalizedResources>
+
     </Localization>
+
+    <DisplayControls>
+      <DisplayControl Id="phoneControl" UserInterfaceControlType="VerificationControl">
+        <InputClaims>
+          <InputClaim ClaimTypeReferenceId="nationalNumber" />
+          <InputClaim ClaimTypeReferenceId="countryCode" />
+        </InputClaims>
+        <DisplayClaims>
+          <DisplayClaim ClaimTypeReferenceId="countryCode" ControlClaimType="CountryCode" Required="true" />
+          <DisplayClaim ClaimTypeReferenceId="nationalNumber" ControlClaimType="Phone" Required="true" />
+          <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
+        </DisplayClaims>
+        <Actions>
+          <Action Id="SendCode">
+            <ValidationClaimsExchange>
+              <ValidationClaimsExchangeTechnicalProfile TechnicalProfileReferenceId="CombineCountryCodeAndNationalNumber" />
+              <ValidationClaimsExchangeTechnicalProfile TechnicalProfileReferenceId="AzureMfa-SendSms" />
+            </ValidationClaimsExchange>
+          </Action>
+          <Action Id="VerifyCode">
+            <ValidationClaimsExchange>
+              <ValidationClaimsExchangeTechnicalProfile TechnicalProfileReferenceId="CombineCountryCodeAndNationalNumber" />
+              <ValidationClaimsExchangeTechnicalProfile TechnicalProfileReferenceId="AzureMfa-VerifySms" />
+            </ValidationClaimsExchange>
+          </Action>
+        </Actions>
+      </DisplayControl>
+    </DisplayControls>
+
   </BuildingBlocks>
   <!--
         A list of all the claim providers that can be used in the technical policies. If a claims provider is not listed 
@@ -634,7 +709,7 @@
             <Item Key="Operation">Write</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">false</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">false</Item>
-            <Item Key="UserMessageIfPhoneNumberParseFailure">Phone number is not valid.</Item>
+            <Item Key="UserMessageIfPhoneNumberParseFailure">Custom error message if the phone number is not valid.</Item>
           </Metadata>
           <InputClaimsTransformations>
             <InputClaimsTransformation ReferenceId="ConvertPhoneNumberClaimToString" /> 
@@ -684,6 +759,50 @@
             <InputClaim ClaimTypeReferenceId="signInNames.phoneNumber" PartnerClaimType="phoneNumber" />
           </InputClaims>
         </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+    <ClaimsProvider>
+      <DisplayName>Local Account Sign UP With Phone</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="LocalAccountSignUpWithLogonPhoneNumber">
+          <DisplayName>Phone</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="ContentDefinitionReferenceId">phoneSignUp</Item>
+            <Item Key="setting.showSignupLink">False</Item>
+            <Item Key="EnforceEmailVerification">False</Item>
+            <Item Key="IncludeClaimResolvingInClaimsHandling">False</Item>
+            <Item Key="setting.operatingMode">Usermame</Item>
+            <Item Key="UserMessageIfClaimsTransformationInvalidPhoneNumber">Please enter a valid phone number and country code.</Item>
+          </Metadata>
+          <CryptographicKeys>
+            <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
+          </CryptographicKeys>
+          <InputClaimsTransformations>
+            <InputClaimsTransformation ReferenceId="CreateRandomUPNUserName" />
+            <InputClaimsTransformation ReferenceId="CreateUserPrincipalName" />
+          </InputClaimsTransformations>
+          <DisplayClaims>
+            <DisplayClaim DisplayControlReferenceId="phoneControl" />
+            <!-- <DisplayClaim ClaimTypeReferenceId="displayName" /> -->
+            <!-- <DisplayClaim ClaimTypeReferenceId="givenName" /> -->
+            <!-- <DisplayClaim ClaimTypeReferenceId="surName" /> -->
+          </DisplayClaims>
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="objectId" />
+            <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="displayName" /> -->
+            <!-- <OutputClaim ClaimTypeReferenceId="givenName" /> -->
+            <!-- <OutputClaim ClaimTypeReferenceId="surName" /> -->
+            <OutputClaim ClaimTypeReferenceId="signInNames.phoneNumber" />
+          </OutputClaims>
+          <ValidationTechnicalProfiles>
+            <ValidationTechnicalProfile ReferenceId="CombineCountryCodeAndNationalNumber" />
+            <!-- <ValidationTechnicalProfile ReferenceId="AAD-UserWriteUsingLogonPhoneNumber" /> -->
+          </ValidationTechnicalProfiles>
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
+        </TechnicalProfile>
+
       </TechnicalProfiles>
     </ClaimsProvider>
     <ClaimsProvider>
@@ -811,17 +930,24 @@
 
         <OrchestrationStep Order="1" Type="ClaimsExchange">
           <ClaimsExchanges>
-            <ClaimsExchange Id="PhoneVerificationExchangePart1" TechnicalProfileReferenceId="PhoneVerificationPage1" />
-          </ClaimsExchanges>
-        </OrchestrationStep>
-
-        <OrchestrationStep Order="2" Type="ClaimsExchange">
-          <ClaimsExchanges>
-            <ClaimsExchange Id="PhoneVerificationExchangePart2" TechnicalProfileReferenceId="PhoneVerificationPage2" />
+            <ClaimsExchange Id="LocalAccountSignUpWithLogonPhoneNumber" TechnicalProfileReferenceId="LocalAccountSignUpWithLogonPhoneNumber" />
           </ClaimsExchanges>
         </OrchestrationStep>
         
-        <OrchestrationStep Order="3" Type="ClaimsExchange">
+       
+        <!-- <OrchestrationStep Order="1" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="PhoneVerificationExchangePart1" TechnicalProfileReferenceId="PhoneVerificationPage1" />
+          </ClaimsExchanges>
+        </OrchestrationStep> -->
+
+        <!-- <OrchestrationStep Order="2" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="PhoneVerificationExchangePart2" TechnicalProfileReferenceId="PhoneVerificationPage2" />
+          </ClaimsExchanges>
+        </OrchestrationStep> -->
+        
+        <OrchestrationStep Order="2" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>objectId</Value>
@@ -832,7 +958,8 @@
             <ClaimsExchange Id="AADUserWriteUser" TechnicalProfileReferenceId="AAD-UserWriteUsingLogonPhoneNumber" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <OrchestrationStep Order="4" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
+
+        <OrchestrationStep Order="3" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />
     </UserJourney>
