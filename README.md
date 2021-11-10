@@ -45,8 +45,6 @@
 
     For example, if the name of your B2C tenant is *contosotenant*, all instances of `yourtenant.onmicrosoft.com` become `contosotenant.onmicrosoft.com`.
 
-1. In **`Phone_Email_Base.xml`**, replace `{insert your privacy statement URL}` and `{insert your terms and conditions URL}` with the appropriate URLs. Alternatively, delete the lines containing this text if you do not want these links shown on your phone signup/signin pages.
-
 1. Save the file.
 
 ## Upload the policies
