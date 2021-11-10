@@ -576,7 +576,6 @@
         </Metadata>
         <LocalizedResourcesReferences MergeBehavior="Prepend">
           <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="phoneSignUp.en" />
-          <LocalizedResourcesReference Language="hi" LocalizedResourcesReferenceId="phoneSignUp.hi" />
         </LocalizedResourcesReferences>
       </ContentDefinition>
 
@@ -606,20 +605,6 @@
         <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_text">Privacy Statement</LocalizedString>
         <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_url">{insert your privacy statement URL}</LocalizedString> -->
         <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_text">Terms and Conditions</LocalizedString>
-        <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_url">{insert your terms and conditions URL}</LocalizedString> -->
-      </LocalizedStrings>
-    </LocalizedResources>
-
-    <LocalizedResources Id="phoneSignUp.hi">
-      <LocalizedStrings>
-        <LocalizedString ElementType="UxElement" StringId="initial_intro">कृपया अपने देश कोड और फ़ोन नंबर को सत्यापित करें</LocalizedString>
-        <!-- The following elements will display a message and two links at the bottom of the signup page. 
-        For policies that you intend to show to users in the United States, we suggest displaying the following text. Replace the content of the disclaimer_link_X_url elements with links to your organization's privacy statement and terms and conditions. 
-        Remove any of these lines if you do not wish to display them.  -->
-        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_msg_intro">अपना फ़ोन नंबर प्रदान करके, आप टेक्स्ट संदेश द्वारा भेजे गए एक बार पासकोड प्राप्त करने के लिए सहमति देते हैं ताकि आप अपने आवेदन नाम को शामिल कर सकें }। मानक गड़बड़ी और डेटा दरें लागू हो सकती हैं।</LocalizedString>
-        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_text">गोपनीयता विवरण</LocalizedString>
-        <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_1_url">{insert your privacy statement URL}</LocalizedString> -->
-        <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_text">नियम और शर्तें</LocalizedString>
         <!-- <LocalizedString ElementType="DisplayControl" ElementId="phoneControl" StringId="disclaimer_link_2_url">{insert your terms and conditions URL}</LocalizedString> -->
       </LocalizedStrings>
     </LocalizedResources>
